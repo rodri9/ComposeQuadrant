@@ -1,19 +1,3 @@
-/*
- * Copyright (C) 2023 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.example.composequadrant
 
 import android.os.Bundle
@@ -60,12 +44,14 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun ComposeQuadrantApp() {
     Column(Modifier.fillMaxWidth()) {
+        
+        //El modifier de weight también se ocupa para que no ocupe toda la pantalla una sola línea y quepa la segunda.
         Row(Modifier.weight(1f)) {
             ComposableInfoCard(
                 title = stringResource(R.string.first_title),
                 description = stringResource(R.string.first_description),
                 backgroundColor = Color(0xFFEADDFF),
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.weight(1f) //Se usa para que la carta no ocupe toda la fila y quepa una segunda al lado.
             )
             ComposableInfoCard(
                 title = stringResource(R.string.second_title),
@@ -92,7 +78,7 @@ fun ComposeQuadrantApp() {
 }
 
 @Composable
-private fun ComposableInfoCard(
+fun ComposableInfoCard(
     title: String,
     description: String,
     backgroundColor: Color,
@@ -107,11 +93,14 @@ private fun ComposableInfoCard(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
+            //Texto del título
             text = title,
-            modifier = Modifier.padding(bottom = 16.dp),
-            fontWeight = FontWeight.Bold
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier
+                .padding(16.dp)
         )
         Text(
+            //Texto de la descripción
             text = description,
             textAlign = TextAlign.Justify
         )
@@ -120,7 +109,7 @@ private fun ComposableInfoCard(
 
 @Preview(showBackground = true)
 @Composable
-fun ComposeQuadrantAppPreview() {
+fun GreetingPreview() {
     ComposeQuadrantTheme {
         ComposeQuadrantApp()
     }
